@@ -37,58 +37,58 @@ const exam = [
 ];
 
 function App() {
-  return (
-    <Test />
-  );
+  return <Test />;
 }
 
 function Test() {
   const Exams = exam;
   const [selectedAnswers, setSelectedAnswers] = useState(Array(Exams.length).fill(''));
+  const [results, setResults] = useState(Array(Exams.length).fill(null)); 
+  const [display,setdisplay]= useState('');
+  const [isSelected,setisSelected]=useState(false);
 
   function handleAnswer() {
-    const score = Exams.filter((exam, index) => selectedAnswers[index] === exam.answer).length;
-    console.log(`Your score: ${score}/${Exams.length}`);
+    const newResults = Exams.map((exam, index) => {
+      if (selectedAnswers[index] === exam.answer) {
+        return 'correct';
+      } else if (selectedAnswers[index]) {
+        return 'notcorrect';
+      }
+      return null;
+    });
+    setResults(newResults);
+    const score = newResults.filter(result => result === 'correct').length;
+    setdisplay(`Your score: ${score}/${Exams.length}`);
+    setisSelected(true);
   }
 
   return (
     <div className='outer'>
+      <h1 className='diplay'>{display}</h1>
       {Exams.map((exam, index) => (
         <div className='inner' key={index}>
           <h3>{exam.question}</h3>
           <ul>
-            <li>
-              <input type="radio" id={`choose1-${index}`} name={`question${index}`} value='choose1' onChange={e => {
-                const newAnswers = [...selectedAnswers];
-                newAnswers[index] = e.target.value;
-                setSelectedAnswers(newAnswers);
-              }} />
-              <label htmlFor={`choose1-${index}`}> {exam.choose1}</label>
-            </li>
-            <li>
-              <input type="radio" id={`choose2-${index}`} name={`question${index}`} value='choose2' onChange={e => {
-                const newAnswers = [...selectedAnswers];
-                newAnswers[index] = e.target.value;
-                setSelectedAnswers(newAnswers);
-              }} />
-              <label htmlFor={`choose2-${index}`}> {exam.choose2}</label>
-            </li>
-            <li>
-              <input type="radio" id={`choose3-${index}`} name={`question${index}`} value='choose3' onChange={e => {
-                const newAnswers = [...selectedAnswers];
-                newAnswers[index] = e.target.value;
-                setSelectedAnswers(newAnswers);
-              }} />
-              <label htmlFor={`choose3-${index}`}> {exam.choose3}</label>
-            </li>
-            <li>
-              <input type="radio" id={`choose4-${index}`} name={`question${index}`} value='choose4' onChange={e => {
-                const newAnswers = [...selectedAnswers];
-                newAnswers[index] = e.target.value;
-                setSelectedAnswers(newAnswers);
-              }} />
-              <label htmlFor={`choose4-${index}`}> {exam.choose4}</label>
-            </li>
+            {['choose1', 'choose2', 'choose3', 'choose4'].map((choice, i) => (
+              <li 
+                key={choice} 
+                className={results[index] === 'correct' && choice === exam.answer ? 'correct' : 
+                           results[index] === 'notcorrect' && choice === selectedAnswers[index] ? 'notcorrect' : ''}>
+                <input 
+                  type="radio" 
+                  id={`${choice}-${index}`} 
+                  name={`question${index}`} 
+                  value={choice} 
+                  onChange={e => {
+                    const newAnswers = [...selectedAnswers];
+                    newAnswers[index] = e.target.value;
+                    setSelectedAnswers(newAnswers);
+                  }} 
+                  disabled={isSelected}
+                />
+                <label htmlFor={`${choice}-${index}`}> {exam[choice]}</label>
+              </li>
+            ))}
           </ul>
         </div>
       ))}

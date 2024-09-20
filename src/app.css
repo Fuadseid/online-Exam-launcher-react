@@ -21,8 +21,8 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    width: 95%;
-    max-width: 800px;
+    width: 100%;
+    max-width: 2200px;
     max-height: 80vh;
     overflow-y: auto;
 }
@@ -113,4 +113,18 @@ button:hover {
 
 button:active {
     transform: scale(0.95); 
+}
+.correct{
+    background-color: #13ca5f;
+    color: #ecf0f1;
+}
+.notcorrect{
+    background-color: #ca1313;
+    color: #ecf0f1; 
+}
+.diplay{
+    font-size: 2em;
+    color: #ffffff;
+    font-family: 'Georgia', serif;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
