@@ -1,4 +1,4 @@
-import './app.css'
+import './app.css';
 
 const exam = [
   {
@@ -20,30 +20,43 @@ const exam = [
 ];
 
 function App() {
-  const Exams = exam;
+  
   return (
-    <div>
+    <Test/>
+  );
+}
+function Test(){
+  const Exams = exam;
+return(
+  <div className='outer'>
+    
       {Exams.map((exam, index) => (
-        <div key={index}>
+        <div className='inner' key={index}>
           <h3>{exam.question}</h3>
           <ul>
             <li>
-              <input type="radio" name={`question${index}`} /> {exam.choose1}
+              <input type="radio" id={`choose1-${index}`} name={`question${index}`} />
+              <label htmlFor={`choose1-${index}`}> {exam.choose1}</label>
             </li>
             <li>
-              <input type="radio" name={`question${index}`} /> {exam.choose2}
+              <input type="radio" id={`choose2-${index}`} name={`question${index}`} />
+              <label htmlFor={`choose2-${index}`}> {exam.choose2}</label>
             </li>
             <li>
-              <input type="radio" name={`question${index}`} /> {exam.choose3}
+              <input type="radio" id={`choose3-${index}`} name={`question${index}`} />
+              <label htmlFor={`choose3-${index}`}> {exam.choose3}</label>
             </li>
             <li>
-              <input type="radio" name={`question${index}`} /> {exam.choose4}
+              <input type="radio" id={`choose4-${index}`} name={`question${index}`} />
+              <label htmlFor={`choose4-${index}`}> {exam.choose4}</label>
             </li>
           </ul>
         </div>
       ))}
     </div>
-  );
+);
+
+
 }
 
 export default App;
