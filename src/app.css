@@ -5,13 +5,15 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-color: #2c3e50;
     color: #ecf0f1;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    overflow: hidden;
+    line-height: 1.6;
 }
 
 .outer {
@@ -19,8 +21,33 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    max-width: 600px;
+    width: 95%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.outer::-webkit-scrollbar {
+    width: 12px;
+}
+
+.outer::-webkit-scrollbar-track {
+    background: rgba(44, 62, 80, 0.8);
+    border-radius: 10px;
+}
+
+.outer::-webkit-scrollbar-thumb {
+    background: #f39c12;
+    border-radius: 10px;
+}
+
+.outer::-webkit-scrollbar-thumb:hover {
+    background: #e67e22;
+}
+
+.outer {
+    scrollbar-width: thin;
+    scrollbar-color: #f39c12 rgba(44, 62, 80, 0.8);
 }
 
 .inner {
@@ -37,8 +64,11 @@ body {
 
 h3 {
     margin-bottom: 10px;
-    font-size: 1.5em;
+    font-size: 2em;
     color: #f39c12;
+    font-family: 'Georgia', serif;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.5px;
 }
 
 ul {
@@ -51,6 +81,7 @@ li {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
     transition: background-color 0.3s;
+    font-family: 'Arial', sans-serif;
 }
 
 li:hover {
@@ -60,4 +91,26 @@ li:hover {
 input[type="radio"] {
     margin-right: 10px;
     accent-color: #f39c12;
+}
+
+button {
+    background-color: #f39c12; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    padding: 10px 20px;
+    font-size: 1.2em; 
+    font-family: 'Roboto', sans-serif; 
+    cursor: pointer; 
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #e67e22; 
+    transform: scale(1.05); 
+}
+
+button:active {
+    transform: scale(0.95); 
 }
